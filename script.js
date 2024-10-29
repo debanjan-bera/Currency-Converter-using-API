@@ -1,68 +1,56 @@
-const result = document.querySelector(".res");
-const selectElement = document.getElementById("nation1");
-import{countryList} from './countrylist.js'
+import { currencyCountryCodes,selecteFirstEle,insertOptionData} from "./countrylist.js";
 const countryNames = [];
+const resultOfConversion = document.querySelector(".res")
+const selectFirstCountryName = document.getElementById("nation1");
+const selectSecondCountryName = document.getElementById("nation2");
+const firstNatImg = document.querySelector(".pic1");
+const secondNatImg = document.querySelector(".pic2");
+let fromSelectNat = null;
+let toSelectNat = null;
 
-
-const currencyConvert = async () => {
-  try {
-    // Fetch supported currencies
-    const countryData = await fetch(
-      "https://api.currencyfreaks.com/v2.0/supported-currencies"
-    );
-    
-    // Parse the JSON response
-    const data = await countryData.json();
-    console.log(data.supportedCurrenciesMap.USD);
-    // Assuming countryList is defined elsewhere in your code
-    // Example countryList for demonstration
-    
-    
-    // Iterate through supported currencies
-    for (const key in data.supportedCurrenciesMap) {
-      // Check if the key exists in countryList
-      if (countryList[key]) {
-        // Log the currency and its corresponding value
-        // console.log(countryList[key]);
-        // console.log(data.supportedCurrenciesMap[key].countryName);
-        countryNames.push(data.supportedCurrenciesMap[key].countryName);
-      }
-      selectElement.addEventListener("change", () => {
-        const selectedValue = selectElement.value; // Get the selected value
-        if(data.supportedCurrenciesMap[key].countryName === selectedValue){
-          const apiImgCode = data.supportedCurrenciesMap[key].countryCode
-          // console.log(apiImgCode);
-          document.querySelector(".pic").innerHTML=`<img src="https://flagsapi.com/${apiImgCode}/flat/64.png" class="pic">`
-        }
-        if(selectElement.value === 'United States of America'){
-          document.querySelector(".pic").innerHTML=`<img src="https://flagsapi.com/US/flat/64.png" class="pic">`
-        }
+function convert(from, to, amount) {
+  fetch(`https://api.frankfurter.app/latest?base=${from}&symbols=${to}`)
+    .then((resp) => resp.json())
+    .then((data) => {
+      console.log(data.rates[to]);
+      console.log(from);
+      const convertedAmount = (amount * data.rates[to]).toFixed(2);
+      resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`
     });
-    }
-    countryNames.sort();
-    countryNames[4]= 'United States of America'
-    countryNames.sort();
+}
 
-    for (const ele of countryNames) {
-      // console.log(ele);
-      const markup = `<option value="${ele}">${ele}</option>`;
-      selectElement.insertAdjacentHTML('beforeend', markup);
-      document.getElementById("nation2").insertAdjacentHTML('beforeend', markup);
+convert("USD", "INR", 10);
 
+const countryCode = async () => {
+  try {
+    const countryData = await fetch("https://api.currencyfreaks.com/v2.0/supported-currencies");
+    const data = await countryData.json();
+    console.log(data.supportedCurrenciesMap);
+
+    // Push country names into countryNames array
+    for (const key in data.supportedCurrenciesMap) {
+      for (const key2 in currencyCountryCodes)
+        if (key2 === key) {
+          if (data.supportedCurrenciesMap[key].countryName === "Global") continue;
+          else countryNames.push(data.supportedCurrenciesMap[key].countryName);
+        }
     }
-    
-    
-    // Log the sorted country names
+    for (const key in data.supportedCurrenciesMap) {
+      selecteFirstEle(key,data.supportedCurrenciesMap,selectFirstCountryName,firstNatImg);
+      selecteFirstEle(key,data.supportedCurrenciesMap,selectSecondCountryName,secondNatImg);
+    }
     // console.log(countryNames);
+    countryNames.sort();
+    insertOptionData(countryNames,selectFirstCountryName,selectSecondCountryName);
+
   } catch (error) {
-    console.error('Error fetching currency data:', error);
+    console.error("Error fetching currency data:", error);
   }
 };
-
-// Call the function
-currencyConvert();
+countryCode();
 
 
-
-
-// Add an event listener for the change event
+selectFirstCountryName.addEventListener("change", () => {
+  const selectedValue = selectFirstCountryName.value;
+  console.log(selectedValue);
+})

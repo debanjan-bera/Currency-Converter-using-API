@@ -1,52 +1,57 @@
-export const countryList = {
+export const currencyCountryCodes ={
+    ADA: "ADA",
     AED: "AE",
     AFN: "AF",
-    XCD: "AG",
     ALL: "AL",
     AMD: "AM",
-    ANG: "AN",
+    ANG: "AW",
     AOA: "AO",
-    AQD: "AQ",
+    ARB: "ARB",
     ARS: "AR",
     AUD: "AU",
+    AWG: "AW",
     AZN: "AZ",
     BAM: "BA",
     BBD: "BB",
     BDT: "BD",
-    XOF: "BE",
     BGN: "BG",
     BHD: "BH",
     BIF: "BI",
     BMD: "BM",
+    BNB: "BN",
     BND: "BN",
     BOB: "BO",
     BRL: "BR",
     BSD: "BS",
-    NOK: "BV",
+    BTC: "BTC",
+    BTN: "BT",
     BWP: "BW",
+    BYN: "BY",
     BYR: "BY",
     BZD: "BZ",
     CAD: "CA",
     CDF: "CD",
-    XAF: "CF",
     CHF: "CH",
+    CLF: "CL",
     CLP: "CL",
     CNY: "CN",
     COP: "CO",
     CRC: "CR",
+    CUC: "CU",
     CUP: "CU",
     CVE: "CV",
-    CYP: "CY",
     CZK: "CZ",
+    DAI: "DAI",
     DJF: "DJ",
     DKK: "DK",
     DOP: "DO",
+    DOT: "DOT",
     DZD: "DZ",
-    ECS: "EC",
-    EEK: "EE",
     EGP: "EG",
+    ERN: "ER",
     ETB: "ET",
-    EUR: "FR",
+    ETH: "ETH",
+    EUR: "EU",
     FJD: "FJ",
     FKP: "FK",
     GBP: "GB",
@@ -65,10 +70,12 @@ export const countryList = {
     HUF: "HU",
     IDR: "ID",
     ILS: "IL",
+    IMP: "IM",
     INR: "IN",
     IQD: "IQ",
     IRR: "IR",
     ISK: "IS",
+    JEP: "JE",
     JMD: "JM",
     JOD: "JO",
     JPY: "JP",
@@ -86,6 +93,7 @@ export const countryList = {
     LKR: "LK",
     LRD: "LR",
     LSL: "LS",
+    LTC: "LTC",
     LTL: "LT",
     LVL: "LV",
     LYD: "LY",
@@ -97,7 +105,6 @@ export const countryList = {
     MNT: "MN",
     MOP: "MO",
     MRO: "MR",
-    MTL: "MT",
     MUR: "MU",
     MVR: "MV",
     MWK: "MW",
@@ -105,12 +112,13 @@ export const countryList = {
     MYR: "MY",
     MZN: "MZ",
     NAD: "NA",
-    XPF: "NC",
     NGN: "NG",
     NIO: "NI",
+    NOK: "NO",
     NPR: "NP",
     NZD: "NZ",
     OMR: "OM",
+    OP: "OP",
     PAB: "PA",
     PEN: "PE",
     PGK: "PG",
@@ -129,8 +137,9 @@ export const countryList = {
     SDG: "SD",
     SEK: "SE",
     SGD: "SG",
-    SKK: "SK",
+    SHP: "SH",
     SLL: "SL",
+    SOL: "SV",
     SOS: "SO",
     SRD: "SR",
     STD: "ST",
@@ -154,24 +163,44 @@ export const countryList = {
     VEF: "VE",
     VND: "VN",
     VUV: "VU",
+    WST: "WS",
+    XAF: "XAF",
+    XAG: "XAG",
+    XAU: "XAU",
+    XCD: "XCD",
+    XDR: "XDR",
+    XPD: "XPD",
+    XPF: "XPF",
+    XPT: "XPT",
+    XRP: "XRP",
     YER: "YE",
     ZAR: "ZA",
     ZMK: "ZM",
-    ZWD: "ZW",
-  };
+    ZMW: "ZM",
+    ZWL: "ZW"
+}
 
-
-  // function convert(from, to, amount) {
-//   fetch(`"https://api.currencyfreaks.com/v2.0/supported-currencies"`)
-//     .then((resp) => resp.json())
-//     .then((data) => { console.log(data.rates[to])
-//       const convertedAmount = (amount * data.rates[to]).toFixed(2);
-//       result.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`
-//     });
-//   }
-
+export function selecteFirstEle(key,data,selectCountryName,imgNat){
+  selectCountryName.addEventListener("change", () => {
+    const selectedValue = selectCountryName.value; // Get the selected value
+    // console.log(selectedValue)
+    if (data[key].countryName === selectedValue) {
+      const apiImgCode = data[key].countryCode;
+      // console.log(data.supportedCurrenciesMap[key].currencyCode);
+      let fromCountryCode = data[key].currencyCode;
+      console.log(fromCountryCode);
+      imgNat.innerHTML = `<img src="https://flagsapi.com/${apiImgCode}/flat/64.png" class="pic">`;
+    }
+  });
+}
+export const insertOptionData = (countryNames,select1,select2)=>{
+  for (const ele of countryNames) {
+    const markup = `<option value="${ele}">${ele}</option>`;
+    select1.insertAdjacentHTML("beforeend", markup);
+    select2.insertAdjacentHTML("beforeend", markup);
+  }
+}
 // convert("USD", "INR", 10);
-
 // const currencyConvert = async () => {
 //   const apiFetch = await fetch(
 //     "https://api.frankfurter.app/latest"
