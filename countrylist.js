@@ -211,6 +211,7 @@ export function selecteCountryDetails(ele,data,imgNat,isFromSelect) {
   });
 }
 
+
 export function triggerConversion() {
   const amount = 1; 
   if (fromSelectNat && toSelectedCountry) {
@@ -219,11 +220,11 @@ export function triggerConversion() {
 
 export function convert(from, to, amount) {
   console.log(from,to);
-  fetch(`https://api.fxratesapi.com/convert?from=${from}&to=${to}&amount=${amount}&format=json`)
-    .then((resp) => resp.json())
-    .then((data) => {
-      const convertedAmount = (data.result).toFixed(2);
-      resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`;
-    });
+  // fetch(`https://api.fxratesapi.com/convert?from=${from}&to=${to}&amount=${amount}&format=json`)
+    // .then((resp) => resp.json())
+    // .then((data) => {
+    //   const convertedAmount = (data.result).toFixed(2);
+    //   resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`;
+    // });
 }
 
