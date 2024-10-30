@@ -1,4 +1,4 @@
-export const currencyCountryCodes ={
+export const currencyCountryCodes = {
   ADA: "ADA",
   AED: "AE",
   AFN: "AF",
@@ -29,7 +29,6 @@ export const currencyCountryCodes ={
   BYN: "BY",
   BZD: "BZ",
   CAD: "CA",
-  CDF: "CD",
   CHF: "CH",
   CLF: "CL",
   CNY: "CN",
@@ -167,68 +166,59 @@ export const currencyCountryCodes ={
   XCD: "XCD",
   XDR: "XDR",
   XPD: "XPD",
-  XPF: "XPF",
   XPT: "XPT",
   XRP: "XRP",
   YER: "YE",
   ZAR: "ZA",
   ZMK: "ZM",
   ZMW: "ZM",
-  ZWL: "ZW"
-}
-let fromSelectNat = 0;
-let toSelectNat = 0;
+  ZWL: "ZW",
+};
+let fromSelectNat = null;
+let toSelectedCountry = null;
 const resultOfConversion = document.querySelector(".res");
 
-export function selecteFirstEle(data,selectCountryName,imgNat){
-  selectCountryName.addEventListener("change", () => {
-    const selectedValue = selectCountryName.value; 
-    let apiImgCode;
-    
-    for (const key in data) {
-      if (data[key].countryName === selectedValue) {
-        apiImgCode = data[key].countryCode;
-        console.log(data[key].currencyCode,data[key].currencyCode,data[key].countryName);
-        break;
-      }
-    }
-   
-      
-      if(selectedValue === 'United States of America'){
-        imgNat.innerHTML = `<img src="https://flagsapi.com/US/flat/64.png" class="pic">`;
-      }else imgNat.innerHTML = `<img src="https://flagsapi.com/${apiImgCode}/flat/64.png" class="pic">`;
-      
-  });
-}
-export const insertOptionData = (countryNames,select1,select2)=>{
+export const insertOptionData = (countryNames, select1, select2) => {
   for (const ele of countryNames) {
     const markup = `<option value="${ele}">${ele}</option>`;
     select1.insertAdjacentHTML("beforeend", markup);
     select2.insertAdjacentHTML("beforeend", markup);
-  }
-}
-export function selectConv(ele, data, isFromSelect) {
+  }};
+
+
+export function selecteCountryDetails(ele,data,imgNat,isFromSelect) {
   ele.addEventListener("change", () => {
     const selectedValue = ele.value;
-    const currencyCode = Object.values(data).find(country => country.countryName === selectedValue)?.currencyCode;
-    if (isFromSelect) fromSelectNat = currencyCode;
-    else toSelectNat = currencyCode;
-    if(selectedValue === 'United States of America'){
-      fromSelectNat = toSelectNat = 'USD'
+    console.log(selectedValue);
+    const countryData = Object.values(data).find(country => country.countryName === selectedValue);
+    if(selectedValue === 'United States of America')
+       imgNat.innerHTML = `<img src="https://flagsapi.com/US/flat/64.png" class="pic">`;
+    else{
+      const imgCountryCode = countryData.countryCode;
+       imgNat.innerHTML = `<img src="https://flagsapi.com/${imgCountryCode}/flat/64.png" class="pic">`;
+    }
+     if (selectedValue === "United States of America" || selectedValue === "China") {
+       if (isFromSelect) fromSelectNat = selectedValue === "China" ? "CNY" : "USD";
+      else toSelectedCountry = selectedValue === "China" ? "CNY" : "USD";
+     } else {
+      const currencyCode = countryData.currencyCode;
+      console.log(currencyCode);
+       if (isFromSelect) fromSelectNat = currencyCode;
+       else toSelectedCountry = currencyCode;
     }
     triggerConversion();
+    
   });
 }
 
 export function triggerConversion() {
-  const amount = 1; // You can adjust the amount as needed
-  if (fromSelectNat && toSelectNat) {
-    convert(fromSelectNat, toSelectNat, amount);
-  }
-}
+  const amount = 1; 
+  if (fromSelectNat && toSelectedCountry) {
+    convert(fromSelectNat, toSelectedCountry, amount);
+  }};
+
 export function convert(from, to, amount) {
-  
-  // fetch(`https://api.frankfurter.app/latest?base=${from}&symbols=${to}`)
+  console.log(from,to);
   fetch(`https://api.fxratesapi.com/convert?from=${from}&to=${to}&amount=${amount}&format=json`)
     .then((resp) => resp.json())
     .then((data) => {
@@ -236,3 +226,4 @@ export function convert(from, to, amount) {
       resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`;
     });
 }
+
