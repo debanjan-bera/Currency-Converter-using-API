@@ -174,8 +174,8 @@ export const currencyCountryCodes = {
   ZMW: "ZM",
   ZWL: "ZW",
 };
-let fromSelectNat = null;
-let toSelectedCountry = null;
+let fromSelectNat = 'USD';
+let toSelectedCountry = 'INR';
 const resultOfConversion = document.querySelector(".res");
 
 export const insertOptionData = (countryNames, select1, select2) => {
