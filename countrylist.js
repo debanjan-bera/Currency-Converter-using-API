@@ -178,9 +178,11 @@ let fromSelectNat = 'USD';
 let toSelectedCountry = 'INR';
 const resultOfConversion = document.querySelector(".res");
 
-export const insertOptionData = (countryNames, select1, select2) => {
+export const insertOptionData = (countryNames, data,select1, select2) => {
   for (const ele of countryNames) {
-    const markup = `<option value="${ele}">${ele}</option>`;
+    const countryCurCode =  Object.values(data).find(country => country.countryName === ele);
+    console.log(countryCurCode.currencyCode);
+    const markup = `<option value="${ele}">${countryCurCode.currencyCode} - ${ele}</option>`;
     select1.insertAdjacentHTML("beforeend", markup);
     select2.insertAdjacentHTML("beforeend", markup);
   }};
@@ -220,11 +222,10 @@ export function triggerConversion() {
 
 export function convert(from, to, amount) {
   console.log(from,to);
-  // fetch(`https://api.fxratesapi.com/convert?from=${from}&to=${to}&amount=${amount}&format=json`)
-    // .then((resp) => resp.json())
-    // .then((data) => {
-    //   const convertedAmount = (data.result).toFixed(2);
-    //   resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`;
-    // });
+  fetch(`https://api.fxratesapi.com/convert?from=${from}&to=${to}&amount=${amount}&format=json`)
+    .then((resp) => resp.json())
+    .then((data) => {
+      const convertedAmount = (data.result).toFixed(2);
+      resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`;
+    });
 }
-

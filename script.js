@@ -10,8 +10,8 @@ const secondNatImg = document.querySelector(".pic2");
 
 const countryCode = async () => {
   try {
-    // const countryData = await fetch("https://api.currencyfreaks.com/v2.0/supported-currencies");
-    // const data = await countryData.json();
+    const countryData = await fetch("https://api.currencyfreaks.com/v2.0/supported-currencies");
+    const data = await countryData.json();
     let keyMap;
     // Push country names into countryNames array
     for (const key in data.supportedCurrenciesMap) {
@@ -32,12 +32,12 @@ const countryCode = async () => {
   }
 };
 
-// countryCode();
+countryCode();
 
 const populateDropdowns = (list,data) => {
   list.sort();
-  insertOptionData(list, selectFirstCountryName, selectSecondCountryName);
-  // convert('USD','INR',1)
+  insertOptionData(list, data,selectFirstCountryName, selectSecondCountryName);
+  convert('USD','INR',1)
   // Set up event listeners for both dropdowns
   selecteCountryDetails(selectFirstCountryName,data,firstNatImg, true)
   selecteCountryDetails(selectSecondCountryName,data,secondNatImg, false)
@@ -49,5 +49,4 @@ const populateDropdowns = (list,data) => {
 //   errorContainer.textContent = message;
 //   errorContainer.style.display = "block"; // Show the error message
 // // };
-
 

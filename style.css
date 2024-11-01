@@ -12,7 +12,46 @@ body{
     justify-content: center;
 }
 .cont{
-    height: 55vh;
-    width: 40vw;
+    width: 35vw;
     background-color: white;
+    padding: 30px;
+    border: none;
+    border-radius: 7px;
+}
+.cont h2{
+    font-size: 2.4rem;
+    font-weight: 500;
+    text-align: center;
+}
+.cont section{
+    margin: 40px 0 20px;
+}
+section :where(input,select,button){
+    width: 100%;
+    outline: none;
+    border: none;
+}
+section p{
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+input{
+    height: 2.6rem;
+    font-size: 1rem;
+    padding: 0 15px;
+    border: 1px solid #999;
+}
+input:focus{
+    padding:  0 14px;
+    border: 2px solid #675afe;
+}
+.drop-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 3rem;
+    margin: 1rem 0 2rem;
+}
+.drop-list select:focus{
+    border: 2px solid #675afe;
 }
