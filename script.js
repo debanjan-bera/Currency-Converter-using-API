@@ -7,6 +7,9 @@ const selectFirstCountryName = document.getElementById("nation1");
 const selectSecondCountryName = document.getElementById("nation2");
 const firstNatImg = document.querySelector(".pic1");
 const secondNatImg = document.querySelector(".pic2");
+const inputBox = document.querySelector("input")
+
+console.log(inputBox.innerText);
 
 const countryCode = async () => {
   try {
@@ -49,4 +52,3 @@ const populateDropdowns = (list,data) => {
 //   errorContainer.textContent = message;
 //   errorContainer.style.display = "block"; // Show the error message
 // // };
-

@@ -171,18 +171,17 @@ export const currencyCountryCodes = {
   YER: "YE",
   ZAR: "ZA",
   ZMK: "ZM",
-  ZMW: "ZM",
   ZWL: "ZW",
 };
 let fromSelectNat = 'USD';
 let toSelectedCountry = 'INR';
+// const conversionBtn = document.querySelector(".btn")
 const resultOfConversion = document.querySelector(".res");
 
 export const insertOptionData = (countryNames, data,select1, select2) => {
   for (const ele of countryNames) {
-    const countryCurCode =  Object.values(data).find(country => country.countryName === ele);
-    console.log(countryCurCode.currencyCode);
-    const markup = `<option value="${ele}">${countryCurCode.currencyCode} - ${ele}</option>`;
+    const countryCurrencyCode =  Object.values(data).find(country => country.countryName === ele);
+    const markup = `<option value="${ele}">${ele} - ${countryCurrencyCode.currencyCode}</option>`;
     select1.insertAdjacentHTML("beforeend", markup);
     select2.insertAdjacentHTML("beforeend", markup);
   }};
@@ -226,6 +225,11 @@ export function convert(from, to, amount) {
     .then((resp) => resp.json())
     .then((data) => {
       const convertedAmount = (data.result).toFixed(2);
-      resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`;
+
+      // conversionBtn.addEventListener('click',(ele)=>{
+      //   resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`
+      // })
+      resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`
+
     });
 }
