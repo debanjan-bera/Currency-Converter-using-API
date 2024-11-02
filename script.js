@@ -7,9 +7,7 @@ const selectFirstCountryName = document.getElementById("nation1");
 const selectSecondCountryName = document.getElementById("nation2");
 const firstNatImg = document.querySelector(".pic1");
 const secondNatImg = document.querySelector(".pic2");
-const inputBox = document.querySelector("input")
 
-console.log(inputBox.innerText);
 
 const countryCode = async () => {
   try {
@@ -40,11 +38,10 @@ countryCode();
 const populateDropdowns = (list,data) => {
   list.sort();
   insertOptionData(list, data,selectFirstCountryName, selectSecondCountryName);
-  convert('USD','INR',1)
   // Set up event listeners for both dropdowns
   selecteCountryDetails(selectFirstCountryName,data,firstNatImg, true)
   selecteCountryDetails(selectSecondCountryName,data,secondNatImg, false)
-
+  convert('USD','INR',1)
 };
 
 // // const displayErrorMessage = (message) => {

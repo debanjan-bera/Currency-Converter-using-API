@@ -97,9 +97,9 @@ input:focus{
     margin-top: 19px;
     padding: 12px;
     height: 50px;
-    /* background-color: rgba(231, 231, 231, 0.848); */
-    background-color: #001999;
-    color: white;
+    background-color: rgba(208, 208, 208, 0.848);
+    /* background-color: #001999; */
+    color: rgb(0, 0, 0);
     font-size: 1.2rem;
     display: flex;
     align-items: center;

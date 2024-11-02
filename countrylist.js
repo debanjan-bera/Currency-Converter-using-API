@@ -175,7 +175,10 @@ export const currencyCountryCodes = {
 };
 let fromSelectNat = 'USD';
 let toSelectedCountry = 'INR';
-// const conversionBtn = document.querySelector(".btn")
+const conversionBtn = document.querySelector(".btn")
+const inputBox = document.querySelector("input")
+inputBox.value = 1
+console.log(inputBox.value);
 const resultOfConversion = document.querySelector(".res");
 
 export const insertOptionData = (countryNames, data,select1, select2) => {
@@ -209,27 +212,37 @@ export function selecteCountryDetails(ele,data,imgNat,isFromSelect) {
     }
     triggerConversion();
     
-  });
+  })
+
 }
-
-
+triggerConversion();
+console.log(fromSelectNat,toSelectedCountry);
 export function triggerConversion() {
-  const amount = 1; 
+  const amount = inputBox.value === null? 0:inputBox.value
   if (fromSelectNat && toSelectedCountry) {
     convert(fromSelectNat, toSelectedCountry, amount);
-  }};
+  }
+};
 
 export function convert(from, to, amount) {
   console.log(from,to);
   fetch(`https://api.fxratesapi.com/convert?from=${from}&to=${to}&amount=${amount}&format=json`)
     .then((resp) => resp.json())
     .then((data) => {
-      const convertedAmount = (data.result).toFixed(2);
 
-      // conversionBtn.addEventListener('click',(ele)=>{
-      //   resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`
-      // })
-      resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`
-
+      const convertedAmount = from === to?(data.result).toFixed(0):(data.result).toFixed(2)
+      // const convertedAmount = (data.result).toFixed(0);
+      conversionBtn.addEventListener('click',(ele)=>{
+        console.log(ele);
+      })
+      if(from === 'USD' && to==='INR'){
+        resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`
+      }
+      else{
+        conversionBtn.addEventListener('click',(ele)=>{
+        resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`
+      })
+      // resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`
+    }
     });
 }
