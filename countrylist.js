@@ -173,6 +173,43 @@ const currencyCountryCodes = {
   ZMK: "ZM",
   ZWL: "ZW",
 };
+const amountData = document.querySelector("input");
+amountData.value = 1;
+const resultOfConversion = document.querySelector(".res");
+
+
+const insertOptionData = (select1,select2,data) => {
+  const dataCn = Object.keys(currencyCountryCodes);
+  for (const ele of dataCn) {
+      const cnName = data[ele].countryName;
+      const markup = `<option value="${ele}">${ele} - ${cnName}</option>`;
+      select1.insertAdjacentHTML("beforeend", markup);
+      select2.insertAdjacentHTML("beforeend", markup);
+  }
+};
+const selectFlag = (dropDownList,data,select,natIcon) =>{
+  dropDownList.addEventListener("change",()=>{
+      select = dropDownList.value;
+      console.log(select);
+      const cnIcon = data[select].icon
+      natIcon.innerHTML =`<img src="${cnIcon}" class="img">`
+  })
+}
+const CurrConvert = async(from,to) =>{
+  const fetchCurrencyData = await fetch(`https://api.fxratesapi.com/convert?from=${from}&to=${to}&amount=${amountData.value}&format=json`)
+  const dataOfCurrency = await fetchCurrencyData.json()
+  console.log(from,to,amountData.value);
+  console.log(dataOfCurrency.result);
+  const convertedAmount = (dataOfCurrency.result).toFixed(0);
+  resultOfConversion.innerHTML = `<h1>${amountData.value} ${from} = ${convertedAmount} ${to}</h1>`
+}
+function selecteCountryDetails(list,isSelect){
+  list.addEventListener('change',()=>{
+      const selectedValue = list.value;
+      if (isSelect) selected1stValue = selectedValue;
+      else selected2ndValue = selectedValue;
+  })
+}
 // let fromSelectNat = 'USD';
 // let toSelectedCountry = 'INR';
 // const conversionBtn = document.querySelector(".btn")
