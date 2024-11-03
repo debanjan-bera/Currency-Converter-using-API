@@ -15,6 +15,7 @@ body{
     width: 26rem;
     /* max-width: 40vw; */
     background-color: white;
+    /* #f8f8f8f0 */
     padding: 30px;
     border: none;
     border-radius: 7px;
@@ -43,7 +44,7 @@ input{
     height: 2.6rem;
     font-size: 1rem;
     padding: 0 15px;
-    border: 1px solid #999;
+    border-bottom: 1px solid #999;
     border-radius: 5px;
 }
 input:focus{
@@ -76,6 +77,7 @@ input:focus{
 .selectBox select{
     font-size: 1rem;
     cursor: pointer;
+    background-color: #ffffff00;
 }
 .pic1,.pic2{
     height: 100%;

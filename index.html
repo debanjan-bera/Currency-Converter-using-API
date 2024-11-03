@@ -11,30 +11,29 @@
         <h2>Currency Converter</h2>
         <section>
             <p>Enter Amount</p>
-            <input type="text">
+            <input type="text" placeholder="100">
         <div class="drop-list flags">
             <div class="selectBox flag1">
                 <p class="Ppos">From</p>
                 <div class="pic1"><img src="https://flagsapi.com/US/flat/64.png" class="img"></div>
-                
                 <select name="nation" id="nation1">
-                    <option value="United States of America">United States of America - USD</option>
+                    <option value="USD">USD - United States of America</option>
                 </select>
             </div>
             <div class="selectBox flag2">
                 <p class="Ppos">To</p>
                 <div class="pic2"><img src="https://flagsapi.com/IN/flat/64.png" class="img"></div>
                 <select name="nation2" id="nation2">
-                    <option value="India">India - INR</option>
-                    <option value="United States of America">United States of America - USD</option>
+                    <option value="INR">INR - India</option>
+                    <option value="USD">USD - United States of America</option>
                 </select>
             </div>
         </div>
         <div class="conversion"><button class="btn">Convert</button></div>
         <div class="res"></div>
     </div>
-    
-
-    <script src="script.js" type="module"></script>
+    <script src="countrylist.js"></script>
+    <script src="script2.js"></script>
+     <!-- <script type="module" src="script.js"></script> -->
 </body>
 </html>
