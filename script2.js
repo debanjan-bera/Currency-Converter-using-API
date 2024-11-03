@@ -1,4 +1,3 @@
-const countryNames = [];
 const selectFirstList = document.getElementById("nation1");
 const selectSecondList = document.getElementById("nation2");
 const firstCountryIcon = document.querySelector(".pic1");
