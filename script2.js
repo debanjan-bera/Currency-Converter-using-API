@@ -2,6 +2,11 @@ const selectFirstList = document.getElementById("nation1");
 const selectSecondList = document.getElementById("nation2");
 const firstCountryIcon = document.querySelector(".pic1");
 const secondCountryIcon = document.querySelector(".pic2");
+const amountData = document.querySelector("input");
+const conversionBtn = document.querySelector(".btn")
+const resultOfConversion = document.querySelector(".res");
+
+amountData.value = 1;
 let selected1stValue = 'USD'
 let selected2ndValue ='INR'
 const countryCode = async () => {
@@ -16,10 +21,6 @@ try{
     const data3 = await thirdData.json()
     count = Object.keys(data3).length;
     console.log(count);
-    
-    const secondFData = await fetch("https://api.fxratesapi.com/convert?from=GBP&to=EUR&format=json")
-    const data2 = await secondFData.json()
-    console.log(data2.result);
 
     insertOptionData(selectFirstList,selectSecondList,data.supportedCurrenciesMap)
     selectFlag(selectFirstList,data.supportedCurrenciesMap,selected1stValue,firstCountryIcon)
@@ -27,6 +28,7 @@ try{
 }
 catch(error){
     console.error("Error fetching currency data:", error);
+    // displayErrorMessage("Failed to load currency data. Please try again later.");
 }
 }
 countryCode()
@@ -41,7 +43,6 @@ const insertOptionData = (select1,select2,data) => {
     }
 };
 
-
 const selectFlag = (dropDownList,data,select,natIcon) =>{
     dropDownList.addEventListener("change",()=>{
         select = dropDownList.value;
@@ -50,3 +51,15 @@ const selectFlag = (dropDownList,data,select,natIcon) =>{
     })
 }
 
+const CurrConvert = async() =>{
+    const secondFData = await fetch(`https://api.fxratesapi.com/convert?from=${selected1stValue}&to=${selected2ndValue}&amount=${amountData.value}&format=json`)
+    const data2 = await secondFData.json()
+    console.log(selected1stValue,selected2ndValue,amountData.value);
+    console.log(data2.result);
+    const convertedAmount = (data2.result).toFixed(0);
+    resultOfConversion.innerHTML = `<h1>${amountData.value} ${selected1stValue} = ${convertedAmount} ${selected2ndValue}</h1>`
+}
+CurrConvert()
+conversionBtn.addEventListener('click',(ele)=>{
+    CurrConvert()
+});

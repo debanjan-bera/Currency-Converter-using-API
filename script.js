@@ -1,13 +1,9 @@
 // import {currencyCountryCodes, insertOptionData,selecteCountryDetails,triggerConversion,convert} from "./countrylist.js";
-
 // const countryNames = [];
-
 // const selectFirstCountryName = document.getElementById("nation1");
 // const selectSecondCountryName = document.getElementById("nation2");
 // const firstNatImg = document.querySelector(".pic1");
 // const secondNatImg = document.querySelector(".pic2");
-
-
 // const countryCode = async () => {
 //   try {
 //     const countryData = await fetch("https://api.currencyfreaks.com/v2.0/supported-currencies");
@@ -19,18 +15,13 @@
 //       if (data.supportedCurrenciesMap[key].countryName !== "Global" && currencyCountryCodes[key])
 //         countryNames.push(data.supportedCurrenciesMap[key].countryName);
 //     }
-
 //     populateDropdowns(countryNames,data.supportedCurrenciesMap)
- 
 //   } catch (error) {
 //     console.error("Error fetching currency data:", error);
 //     // displayErrorMessage("Failed to load currency data. Please try again later.");
 //   }
 // };
-
-
 // countryCode();
-
 // const populateDropdowns = (list,data) => {
 //   list.sort();
 //   insertOptionData(list, data,selectFirstCountryName, selectSecondCountryName);
@@ -39,7 +30,6 @@
 //   selecteCountryDetails(selectSecondCountryName,data,secondNatImg, false)
 //   convert('USD','INR',1)
 // };
-
 // // // const displayErrorMessage = (message) => {
 // //   const errorContainer = document.getElementById("errorContainer");
 // //   errorContainer.textContent = message;
