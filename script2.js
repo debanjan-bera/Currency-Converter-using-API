@@ -20,6 +20,7 @@ catch(error){
     // displayErrorMessage("Failed to load currency data. Please try again later.");
 }
 }
+
 const populateDropdowns = (data) => {
     insertOptionData(selectFirstList,selectSecondList,data)
     selectFlag(selectFirstList,data,selected1stValue,firstCountryIcon,true);
@@ -30,5 +31,13 @@ CurrConvert(selected1stValue,selected2ndValue)
 countryCode()
 
 const fetchCurr = async()=>{
-    const url = await fetch()
+try{
+    const url = await fetch("https://api.fxratesapi.com/currencies")
+    const data3 = await url.json()
+    console.log(data3.INR.symbol);
 }
+catch(error){
+    console.log('error:',error);
+}
+}
+fetchCurr()
