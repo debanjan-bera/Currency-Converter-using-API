@@ -2,6 +2,7 @@ import{currencyCountryCodes} from "./countrylist.js"
 export const amountData = document.querySelector("input");
 amountData.value = 1;
 const resultOfConversion = document.querySelector(".res");
+const repsOfcurrency = document.querySelector(".Currency-rep")
 let inputValue = 1;
 export let selected1stValue = 'USD'
 export let selected2ndValue ='INR'
@@ -15,6 +16,7 @@ export const insertOptionData = (select1, select2, data) => {
     select2.insertAdjacentHTML("beforeend", markup);
   }
 };
+
 export const selectFlag = (dropDownList, data, select, natIcon, isSelect) => {
   dropDownList.addEventListener("change", () => {
     select = dropDownList.value;
@@ -25,15 +27,18 @@ export const selectFlag = (dropDownList, data, select, natIcon, isSelect) => {
     else selected2ndValue = select;
   });
 };
-export const CurrConvert = async (from, to) => {
-  const fetchCurrencyData = await fetch(`https://api.fxratesapi.com/convert?from=${from}&to=${to}&amount=${amountData.value}&format=json`);
+
+export const CurrConvert = async (from, to,repofAmmount) => {
+  const amount = !repofAmmount?1:amountData.value;
+  const fetchCurrencyData = await fetch(`https://api.fxratesapi.com/convert?from=${from}&to=${to}&amount=${amount}&format=json`);
   const dataOfCurrency = await fetchCurrencyData.json();
   const url = await fetch("https://api.fxratesapi.com/currencies");
   const data3 = await url.json();
-  console.log(from, to, amountData.value,dataOfCurrency.result);
+  console.log(from, to, amount,dataOfCurrency.result);
   const convertedAmount = dataOfCurrency.result.toFixed(0);
   const fromCurrencySymbol = data3[from].symbol;
   const toCurrencySymbol = data3[to].symbol;
   console.log(fromCurrencySymbol);
-  resultOfConversion.innerHTML = `<h1>${fromCurrencySymbol} ${amountData.value} ${from} = ${toCurrencySymbol} ${convertedAmount} ${to}</h1>`;
+  resultOfConversion.innerHTML = `<h1>${fromCurrencySymbol} ${amount} ${from} = ${toCurrencySymbol} ${convertedAmount} ${to}</h1>`;
+ 
 };

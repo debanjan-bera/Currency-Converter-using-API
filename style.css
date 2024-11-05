@@ -100,13 +100,14 @@ input:focus{
     border-radius: 25px;
 }
 .res{
+    width: 100%;
     margin-top: 19px;
     padding: 12px;
     height: 50px;
     background-color: rgba(208, 208, 208, 0.848);
     /* background-color: #001999; */
     color: rgb(0, 0, 0);
-    font-size: 1.2rem;
+    font-size: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
