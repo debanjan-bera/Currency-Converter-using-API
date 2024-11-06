@@ -1,4 +1,4 @@
-import{currencyCountryCodes} from "./countrylist.js"
+import{currencyCountryCodes,currencySymb} from "./countrylist.js"
 export const amountData = document.querySelector("input");
 amountData.value = 1;
 const resultOfConversion = document.querySelector(".res");
@@ -16,7 +16,6 @@ export const insertOptionData = (select1, select2, data) => {
     select2.insertAdjacentHTML("beforeend", markup);
   }
 };
-
 export const selectFlag = (dropDownList, data, select, natIcon, isSelect) => {
   dropDownList.addEventListener("change", () => {
     select = dropDownList.value;
@@ -27,18 +26,14 @@ export const selectFlag = (dropDownList, data, select, natIcon, isSelect) => {
     else selected2ndValue = select;
   });
 };
-
-export const CurrConvert = async (from, to,repofAmmount) => {
-  const amount = !repofAmmount?1:amountData.value;
-  const fetchCurrencyData = await fetch(`https://api.fxratesapi.com/convert?from=${from}&to=${to}&amount=${amount}&format=json`);
+export const CurrConvert = async (from, to) => {
+  const amount = amountData.value;
+  const fetchCurrencyData = await fetch(`https://api.fxratesapi.com/convert?from=${from}&to=${to}&amount=1&format=json`);
   const dataOfCurrency = await fetchCurrencyData.json();
-  const url = await fetch("https://api.fxratesapi.com/currencies");
-  const data3 = await url.json();
   console.log(from, to, amount,dataOfCurrency.result);
-  const convertedAmount = dataOfCurrency.result.toFixed(0);
-  const fromCurrencySymbol = data3[from].symbol;
-  const toCurrencySymbol = data3[to].symbol;
-  console.log(fromCurrencySymbol);
-  resultOfConversion.innerHTML = `<h1>${fromCurrencySymbol} ${amount} ${from} = ${toCurrencySymbol} ${convertedAmount} ${to}</h1>`;
- 
+  const convertedAmount = (amount*dataOfCurrency.result).toFixed(2);
+  const fromCurrencySymbol = currencySymb[from];
+  const toCurrencySymbol = currencySymb[to];
+  resultOfConversion.innerHTML = `<h1><span>${fromCurrencySymbol}</span>${amount} ${from} <span>=</span> <span>${toCurrencySymbol}</span> ${convertedAmount} ${to}</h1>`
+  repsOfcurrency.innerHTML =`<h4><span>${fromCurrencySymbol}</span>${amount} ${from} <span>=</span> <span>${toCurrencySymbol}</span> ${dataOfCurrency.result.toFixed(2)} ${to}</h4>`
 };

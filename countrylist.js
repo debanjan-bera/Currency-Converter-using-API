@@ -173,89 +173,178 @@ export const currencyCountryCodes = {
   ZMK: "ZM",
   ZWL: "ZW",
 };
-console.log(currencyCountryCodes);
-
-// // // const displayErrorMessage = (message) => {
-// //   const errorContainer = document.getElementById("errorContainer");
-// //   errorContainer.textContent = message;
-// //   errorContainer.style.display = "block"; // Show the error message
-// // // };
-
-// function selecteCountryDetails(list,isSelect){
-//   list.addEventListener('change',()=>{
-//       const selectedValue = list.value;
-//       if (isSelect) selected1stValue = selectedValue;
-//       else selected2ndValue = selectedValue;
-//   })
-// }
-// let fromSelectNat = 'USD';
-// let toSelectedCountry = 'INR';
-// const conversionBtn = document.querySelector(".btn")
-// const inputBox = document.querySelector("input")
-// inputBox.value = 1
-// console.log(inputBox.value);
-// const resultOfConversion = document.querySelector(".res");
-
-// export const insertOptionData = (countryNames, data,select1, select2) => {
-//   for (const ele of countryNames) {
-//     const countryCurrencyCode =  Object.values(data).find(country => country.countryName === ele);
-//     const markup = `<option value="${ele}">${ele} - ${countryCurrencyCode.currencyCode}</option>`;
-//     select1.insertAdjacentHTML("beforeend", markup);
-//     select2.insertAdjacentHTML("beforeend", markup);
-//   }};
-
-// export function selecteCountryDetails(ele,data,imgNat,isFromSelect) {
-//   ele.addEventListener("change", () => {
-//     const selectedValue = ele.value;
-//     console.log(selectedValue);
-//     const countryData = Object.values(data).find(country => country.countryName === selectedValue);
-//     if(selectedValue === 'United States of America')
-//        imgNat.innerHTML = `<img src="https://flagsapi.com/US/flat/64.png" class="pic">`;
-//     else{
-//       const imgCountryCode = countryData.countryCode;
-//        imgNat.innerHTML = `<img src="https://flagsapi.com/${imgCountryCode}/flat/64.png" class="pic">`;
-//     }
-//      if (selectedValue === "United States of America" || selectedValue === "China") {
-//        if (isFromSelect) fromSelectNat = selectedValue === "China" ? "CNY" : "USD";
-//       else toSelectedCountry = selectedValue === "China" ? "CNY" : "USD";
-//      } else {
-//       const currencyCode = countryData.currencyCode;
-//       console.log(currencyCode);
-//        if (isFromSelect) fromSelectNat = currencyCode;
-//        else toSelectedCountry = currencyCode;
-//     }
-//     triggerConversion();
-//   })
-// }
-
-// console.log(fromSelectNat,toSelectedCountry);
-// export function triggerConversion() {
-//   const amount = inputBox.value === ''? 1:inputBox.value
-//   if (fromSelectNat && toSelectedCountry) {
-//     convert(fromSelectNat, toSelectedCountry);
-//   }
-// };
-
-// export function convert(from, to) {
-//   console.log(from,to);
-//   const amount = inputBox.value === ''? 1:inputBox.value
-//   fetch(`https://api.fxratesapi.com/convert?from=${from}&to=${to}&amount=${amount}&format=json`)
-//     .then((resp) => resp.json())
-//     .then((data) => {
-
-//       const convertedAmount = from === to?(data.result).toFixed(0):(data.result).toFixed(2)
-//       // const convertedAmount = (data.result).toFixed(0);
-//       conversionBtn.addEventListener('click',(ele)=>{
-//         console.log(ele);
-//       })
-//       if(from === 'USD' && to==='INR'){
-//         resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`
-//       }
-//       else{
-//         conversionBtn.addEventListener('click',(ele)=>{
-//         resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`
-//       })
-//       // resultOfConversion.innerHTML = `<h1>${amount} ${from} = ${convertedAmount} ${to}</h1>`
-//     }
-//     });
-// }
+export const currencySymb = {
+    ADA: "₳",
+    AED: "د.إ",
+    AFN: "؋",
+    ALL: "L",
+    AMD: "֏",
+    ANG: "ƒ",
+    AOA: "Kz",
+    ARB: "¤", 
+    ARS: "$",
+    AUD: "$",
+    AWG: "ƒ",
+    AZN: "₼",
+    BAM: "KM",
+    BBD: "$",
+    BDT: "৳",
+    BGN: "лв",
+    BHD: ".د.ب",
+    BIF: "FBu",
+    BMD: "$",
+    BNB: "Ð", 
+    BND: "$",
+    BOB: "Bs.",
+    BRL: "R$",
+    BSD: "$",
+    BTC: "₿",
+    BTN: "Nu.",
+    BWP: "P",
+    BYN: "Br",
+    BZD: "$",
+    CAD: "$",
+    CHF: "CHF",
+    CLF: "CLF",
+    CNY: "¥",
+    COP: "$",
+    CRC: "₡",
+    CUC: "$",
+    CVE: "$",
+    CZK: "Kč",
+    DAI: "D", 
+    DJF: "Fdj",
+    DKK: "kr",
+    DOP: "RD$",
+    DOT: "●", 
+    DZD: "دج",
+    EGP: "£",
+    ERN: "Nfk",
+    ETB: "Br",
+    ETH: "Ξ",
+    EUR: "€",
+    FJD: "$",
+    FKP: "£",
+    GBP: "£",
+    GEL: "₾",
+    GGP: "£",
+    GHS: "₵",
+    GIP: "£",
+    GMD: "D",
+    GNF: "FG",
+    GTQ: "Q",
+    GYD: "$",
+    HKD: "$",
+    HNL: "L",
+    HRK: "kn",
+    HTG: "G",
+    HUF: "Ft",
+    IDR: "Rp",
+    ILS: "₪",
+    IMP: "£",
+    INR: "₹",
+    IQD: "ع.د",
+    IRR: "﷼",
+    ISK: "kr",
+    JEP: "£",
+    JMD: "$",
+    JOD: "د.ا",
+    JPY: "¥",
+    KES: "Sh",
+    KGS: "лв",
+    KHR: "៛",
+    KMF: "CF",
+    KPW: "₩",
+    KRW: "₩",
+    KWD: "د.ك",
+    KYD: "$",
+    KZT: "₸",
+    LAK: "₭",
+    LBP: "ل.ل",
+    LKR: "Rs",
+    LRD: "$",
+    LSL: "L",
+    LTC: "Ł",
+    LTL: "Lt",
+    LVL: "Ls",
+    LYD: "ل.د",
+    MAD: "د.م.",
+    MDL: "L",
+    MGA: "Ar",
+    MKD: "ден",
+    MMK: "K",
+    MNT: "₮",
+    MOP: "MOP$",
+    MRO: "UM",
+    MUR: "₨",
+    MVR: "ރ.",
+    MWK: "MK",
+    MXN: "$",
+    MYR: "RM",
+    MZN: "MT",
+    NAD: "$",
+    NGN: "₦",
+    NIO: "C$",
+    NOK: "kr",
+    NPR: "₨",
+    NZD: "$",
+    OMR: "ر.ع.",
+    OP: "●", 
+    PAB: "B/.",
+    PEN: "S/",
+    PGK: "K",
+    PHP: "₱",
+    PKR: "₨",
+    PLN: "zł",
+    PYG: "₲",
+    QAR: "ر.ق",
+    RON: "lei",
+    RSD: "дин",
+    RUB: "₽",
+    RWF: "FRw",
+    SAR: "﷼",
+    SBD: "$",
+    SCR: "₨",
+    SDG: "ج.س.",
+    SEK: "kr",
+    SGD: "$",
+    SHP: "£",
+    SLL: "Le",
+    SOL: "S", 
+    SOS: "Sh",
+    SRD: "$",
+    STD: "Db",
+    SVC: "₡",
+    SYP: "£",
+    SZL: "L",
+    THB: "฿",
+    TJS: "ЅМ",
+    TMT: "T",
+    TND: "د.ت",
+    TOP: "T$",
+    TRY: "₺",
+    TTD: "$",
+    TWD: "NT$",
+    TZS: "Sh",
+    UAH: "₴",
+    UGX: "Sh",
+    USD: "$",
+    UYU: "$U",
+    UZS: "лв",
+    VEF: "Bs.",
+    VND: "₫",
+    VUV: "VT",
+    WST: "T",
+    XAF: "FCFA",
+    XAG: "XAG",
+    XAU: "XAU",
+    XCD: "$",
+    XDR: "XDR",
+    XPD: "XPD",
+    XPT: "XPT",
+    XRP: "X", 
+    YER: "﷼",
+    ZAR: "R",
+    ZMK: "ZK",
+    ZWL: "$"  
+}
