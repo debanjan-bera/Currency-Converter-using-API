@@ -1,5 +1,5 @@
 import{currencyCountryCodes,currencySymb} from "./countrylist.js"
-export const amountData = document.querySelector("input");
+const amountData = document.querySelector("input");
 amountData.value = 1;
 const resultOfConversion = document.querySelector(".res");
 const repsOfcurrency = document.querySelector(".Currency-rep")
@@ -11,7 +11,7 @@ export const insertOptionData = (select1, select2, data) => {
   const dataCn = Object.keys(currencyCountryCodes);
   for (const ele of dataCn) {
     const cnName = data[ele].countryName;
-    const markup = `<option value="${ele}">${ele} - ${cnName}</option>`;
+    const markup = `<option value="${ele}" id="${ele}" class="list1">${ele} - ${cnName}</option>`;
     select1.insertAdjacentHTML("beforeend", markup);
     select2.insertAdjacentHTML("beforeend", markup);
   }
@@ -37,3 +37,12 @@ export const CurrConvert = async (from, to) => {
   resultOfConversion.innerHTML = `<h1><span>${fromCurrencySymbol}</span>${amount} ${from} <span>=</span> <span>${toCurrencySymbol}</span> ${convertedAmount} ${to}</h1>`
   repsOfcurrency.innerHTML =`<h4><span>${fromCurrencySymbol}</span>${amount} ${from} <span>=</span> <span>${toCurrencySymbol}</span> ${dataOfCurrency.result.toFixed(2)} ${to}</h4>`
 };
+
+export const swapingcurrency=()=>{
+  const tempCurr = selected1stValue;
+  selected1stValue = selected2ndValue
+  selected2ndValue = tempCurr;
+}
+export const displayErrorMessage = (message)=>{
+  console.log(message);
+}
