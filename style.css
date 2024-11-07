@@ -108,7 +108,7 @@ input:focus{
     width: 100%;
     margin-top: 19px;
     padding: 12px;
-    height: 50px;
+    height: auto;
     background-color: rgba(208, 208, 208, 0.848);
     /* background-color: #001999; */
     color: rgb(0, 0, 0);

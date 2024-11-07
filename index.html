@@ -1,41 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="cont">
         <h2>Currency Converter</h2>
         <section>
             <p>Enter Amount</p>
             <input type="text" placeholder="100">
-        <div class="drop-list flags">
-            <div class="selectBox flag1">
-                <p class="Ppos">From</p>
-                <div class="pic1"><img src="https://flagsapi.com/US/flat/64.png" class="img"></div>
-                <select name="nation" id="nation1">
-                    <option value="USD" class="list1">USD - United States of America</option>
-                    <option value="INR" class="list1">INR - India</option>
-                </select>
+            <div class="drop-list flags">
+                <div class="selectBox flag1">
+                    <p class="Ppos se">From</p>
+                    <div class="pic1"><img src="https://flagsapi.com/US/flat/64.png" class="img"></div>
+                    <select name="nation" id="nation1">
+                        <option value="USD">USD - United States of America</option>
+                        <option value="INR">INR - India</option>
+                    </select>
+                </div>
+                <div class="selectBox flag2">
+                    <p class="Ppos">To</p>
+                    <div class="pic2"><img src="https://flagsapi.com/IN/flat/64.png" class="img"></div>
+                    <select name="nation2" id="nation2">
+                        <option value="INR" class="list">INR - India</option>
+                        <option value="USD" class="list">USD - United States of America</option>
+                    </select>
+                </div>
             </div>
-            <div class="selectBox flag2">
-                <p class="Ppos">To</p>
-                <div class="pic2"><img src="https://flagsapi.com/IN/flat/64.png" class="img"></div>
-                <select name="nation2" id="nation2">
-                    <option value="INR" class="list">INR - India</option>
-                    <option value="USD" class="list">USD - United States of America</option>
-                </select>
+            <div>
+                <h3 class="Currency-rep"></h3>
             </div>
-        </div>
-        <div><h3 class="Currency-rep"></h3></div>
-        <div class="conversion"><button class="btn">Convert</button></div>
-        <div class="res"></div>
+            <div class="conversion"><button class="btn">Convert</button></div>
+            <div class="res"></div>
     </div>
 
     <script type="module" src="script2.js"></script>
 
 </body>
+
 </html>
