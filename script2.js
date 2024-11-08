@@ -4,7 +4,7 @@ selectSecondList = document.getElementById("nation2"),
 firstCountryIcon = document.querySelector(".pic1"),
 secondCountryIcon = document.querySelector(".pic2"),
 conversionBtn = document.querySelector(".btn"),
-swapBtn = document.querySelector(".se");
+swapBtn = document.querySelector(".rotateBtn");
 const countryCode = async () => {
 try{
     const fetchCnData = await fetch("https://api.currencyfreaks.com/v2.0/supported-currencies");
