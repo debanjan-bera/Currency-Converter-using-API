@@ -9,25 +9,25 @@ const countryCode = async () => {
 try{
     const fetchCnData = await fetch("https://api.currencyfreaks.com/v2.0/supported-currencies");
     const data = await fetchCnData.json();
-    populateDropdowns(data.supportedCurrenciesMap)
+    isFunction(data.supportedCurrenciesMap)
     conversionBtn.addEventListener('click',()=>{
         CurrConvert(selected1stValue,selected2ndValue)
     });
     swapBtn.addEventListener("click",()=>{
-        swapingcurrency(firstCountryIcon,secondCountryIcon)
+        swapingcurrency(firstCountryIcon,secondCountryIcon,selectFirstList,selectSecondList)
         CurrConvert(selected1stValue,selected2ndValue)
     })
+
 }
 catch(error){
     console.error("Error fetching currency data:", error);
     // displayErrorMessage("Failed to load currency data. Please try again later.");
 }}
 
-const populateDropdowns = (data) => {
+const isFunction = (data) => {
     insertOptionData(selectFirstList,selectSecondList,data)
     selectFlag(selectFirstList,data,selected1stValue,firstCountryIcon,true);
     selectFlag(selectSecondList,data,selected2ndValue,secondCountryIcon,false)
-
 }
 CurrConvert(selected1stValue,selected2ndValue)
 countryCode()
