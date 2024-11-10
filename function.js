@@ -36,7 +36,7 @@ export const CurrConvert = async (from, to) => {
   const convertedAmount = (amount*dataOfCurrency.result).toFixed(2);
   const fromCurrencySymbol = currencySymb[from];
   const toCurrencySymbol = currencySymb[to];
-  resultOfConversion.innerHTML = `<h1><span>${fromCurrencySymbol}</span>${amount} ${from} <span>=</span> <span>${toCurrencySymbol}</span> ${convertedAmount} ${to}</h1>`
+  resultOfConversion.innerHTML = `<h1>${amount} ${from} <span>=</span>  ${convertedAmount} ${to}</h1>`
   repsOfcurrency.innerHTML =`<h4><span>${fromCurrencySymbol}</span> 1 ${from} <span>=</span> <span>${toCurrencySymbol}</span> ${dataOfCurrency.result.toFixed(2)} ${to}</h4>`
 };
 
