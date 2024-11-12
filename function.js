@@ -40,16 +40,18 @@ export const CurrConvert = async (from, to) => {
   repsOfcurrency.innerHTML =`<h4><span>${fromCurrencySymbol}</span> 1 ${from} <span>=</span> <span>${toCurrencySymbol}</span> ${dataOfCurrency.result.toFixed(2)} ${to}</h4>`
 };
 
-export const swapingcurrency=(pic1,pic2,s1,s2)=>{
-  console.log(selected1stValue,selected2ndValue);
-  const tempCurr = selected1stValue;
-  selected1stValue = selected2ndValue
-  selected2ndValue = tempCurr;
-  console.log(selected1stValue,selected2ndValue);
-  pic2.innerHTML = `<img src="https://currencyfreaks.com/photos/flags/${selected2ndValue.toLowerCase()}.png" class="img">`
-  pic1.innerHTML = `<img src="https://currencyfreaks.com/photos/flags/${selected1stValue.toLowerCase()}.png" class="img">`
-  s1.value = selected1stValue;
-  s2.value = selected2ndValue;
+export const swapingcurrency=(btn,pic1,pic2,s1,s2)=>{
+  btn.addEventListener("click",()=>{
+    console.log(selected1stValue,selected2ndValue);
+    const tempCurr = selected1stValue;
+    selected1stValue = selected2ndValue
+    selected2ndValue = tempCurr;
+    console.log(selected1stValue,selected2ndValue);
+    pic2.innerHTML = `<img src="https://currencyfreaks.com/photos/flags/${selected2ndValue.toLowerCase()}.png" class="img">`
+    pic1.innerHTML = `<img src="https://currencyfreaks.com/photos/flags/${selected1stValue.toLowerCase()}.png" class="img">`
+    s1.value = selected1stValue;
+    s2.value = selected2ndValue;
+  })
 }
 
 

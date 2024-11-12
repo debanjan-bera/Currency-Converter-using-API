@@ -13,11 +13,6 @@ try{
     conversionBtn.addEventListener('click',()=>{
         CurrConvert(selected1stValue,selected2ndValue)
     });
-    swapBtn.addEventListener("click",()=>{
-        swapingcurrency(firstCountryIcon,secondCountryIcon,selectFirstList,selectSecondList)
-        CurrConvert(selected1stValue,selected2ndValue)
-    })
-
 }
 catch(error){
     console.error("Error fetching currency data:", error);
@@ -28,6 +23,7 @@ const isFunction = (data) => {
     insertOptionData(selectFirstList,selectSecondList,data)
     selectFlag(selectFirstList,data,selected1stValue,firstCountryIcon,true);
     selectFlag(selectSecondList,data,selected2ndValue,secondCountryIcon,false)
+    swapingcurrency(swapBtn,firstCountryIcon,secondCountryIcon,selectFirstList,selectSecondList)
 }
 CurrConvert(selected1stValue,selected2ndValue)
 countryCode()
