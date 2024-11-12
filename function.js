@@ -4,8 +4,22 @@ amountData.value = 1;
 const resultOfConversion = document.querySelector(".res");
 const repsOfcurrency = document.querySelector(".Currency-rep")
 let inputValue = 1;
+let amount = 1;
 export let selected1stValue = 'USD'
 export let selected2ndValue ='INR'
+
+amountData.addEventListener('change',()=>{
+  console.log(amountData.value);
+  if(amountData.value>0){
+    amount = amountData.value
+    console.log('ok',amount);
+  }
+  else{
+    amount = 0
+    console.log('err');
+  }
+})
+
 
 export const insertOptionData = (select1, select2, data) => {
   const dataCn = Object.keys(currencyCountryCodes);
@@ -29,7 +43,7 @@ export const selectFlag = (dropDownList, data, select, natIcon, isSelect) => {
 
 };
 export const CurrConvert = async (from, to) => {
-  const amount = amountData.value;
+
   const fetchCurrencyData = await fetch(`https://api.fxratesapi.com/convert?from=${from}&to=${to}&amount=1&format=json`);
   const dataOfCurrency = await fetchCurrencyData.json();
   console.log(from, to, amount,dataOfCurrency.result);
